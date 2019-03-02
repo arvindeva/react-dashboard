@@ -11,12 +11,10 @@ class UsersPage extends React.Component {
     users: []
   };
 
-  componentDidMount() {
-    axios.get(`https://jsonplaceholder.typicode.com/users`).then(res => {
-      const users = res.data;
-      console.log(users);
-      this.setState({ users });
-    });
+  async componentDidMount() {
+    let res = await axios.get(`https://jsonplaceholder.typicode.com/users`);
+    const users = res.data;
+    this.setState({ users });
   }
 
   render() {

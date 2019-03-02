@@ -34,10 +34,16 @@ class Header extends React.Component {
     return (
       <StyledHeader>
         <div className="bar">
-          <div className="logo"><Link to="/">Dashboard</Link></div>
+          <div className="logo">
+            <Link to="/">
+              <h1>Dashboard</h1>
+            </Link>
+          </div>
           <div className="nav-items">
-            <div className="item"><Link to="/">Users</Link></div>
-            <div className="item"><a>Posts</a></div>
+            <div className="item">
+              <Link to="/">Users</Link>
+            </div>
+            <div className="item">Posts</div>
           </div>
         </div>
       </StyledHeader>

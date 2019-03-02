@@ -4,11 +4,13 @@ import styled from 'styled-components';
 
 import UsersPage from '../pages/UsersPage';
 import UserPage from '../pages/UserPage';
+import PostPage from '../pages/PostPage';
+import AlbumPage from '../pages/AlbumPage';
 
 const StyledPage = styled.div`
   margin-top: 80px;
-  margin-left: 3%;
-  margin-right: 3%;
+  margin-left: 10%;
+  margin-right: 10%;
   z-index: 0;
 `;
 
@@ -18,7 +20,9 @@ class Page extends React.Component {
       <StyledPage>
         <Switch>
           <Route exact path="/" component={UsersPage} />
-          <Route path="/users/:number" component={UserPage} />} />
+          <Route exact path="/users/:userId" component={UserPage} />
+          <Route exact path="/posts/:postId" component={PostPage} />
+          <Route exact path="/albums/:albumId" component={AlbumPage} />
         </Switch>
       </StyledPage>
     );
