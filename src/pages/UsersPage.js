@@ -4,9 +4,7 @@ import styled from 'styled-components';
 
 import UserTable from '../components/UserTable';
 
-const StyledUsersPage = styled.div`
-
-`;
+const StyledUsersPage = styled.div``;
 
 class UsersPage extends React.Component {
   state = {
@@ -29,7 +27,7 @@ class UsersPage extends React.Component {
         </div>
         <div className="ui divider" />
         <div>
-          <UserTable users={this.state.users}/>
+          <UserTable users={this.state.users} />
         </div>
       </StyledUsersPage>
     );

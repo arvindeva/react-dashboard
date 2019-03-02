@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const UserEntry = props => {
@@ -6,7 +7,7 @@ const UserEntry = props => {
     <tr>
       <td>{props.user.id}</td>
       <td>
-        <a>{props.user.username}</a>
+        <Link to={`/users/${props.user.id}`}>{props.user.username}</Link>
       </td>
       <td>{props.user.name}</td>
       <td>{props.user.email}</td>

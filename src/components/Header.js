@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom';
+
 const StyledHeader = styled.div`
   .bar {
     z-index: 1;
@@ -32,9 +34,9 @@ class Header extends React.Component {
     return (
       <StyledHeader>
         <div className="bar">
-          <div className="logo">Dashboard</div>
+          <div className="logo"><Link to="/">Dashboard</Link></div>
           <div className="nav-items">
-            <div className="item"><a>Users</a></div>
+            <div className="item"><Link to="/">Users</Link></div>
             <div className="item"><a>Posts</a></div>
           </div>
         </div>
