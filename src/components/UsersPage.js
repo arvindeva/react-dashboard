@@ -1,0 +1,40 @@
+import React from 'react';
+import axios from 'axios';
+import styled from 'styled-components';
+
+import UserList from './UserList';
+
+const StyledUsersPage = styled.div`
+  margin-left: 30px;
+  margin-right: 30px;
+`;
+
+class UsersPage extends React.Component {
+  state = {
+    users: []
+  };
+
+  componentDidMount() {
+    axios.get(`https://jsonplaceholder.typicode.com/users`).then(res => {
+      const users = res.data;
+      console.log(users);
+      this.setState({ users });
+    });
+  }
+
+  render() {
+    return (
+      <StyledUsersPage>
+        <div>
+          <h1>Users</h1>
+        </div>
+        <div className="ui divider" />
+        <div>
+          <UserList users={this.state.users}/>
+        </div>
+      </StyledUsersPage>
+    );
+  }
+}
+
+export default UsersPage;

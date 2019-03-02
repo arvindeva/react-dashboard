@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import Header from './Header';
-import UserList from './UserList';
 import Page from './Page';
 
 class App extends Component {
@@ -9,9 +8,7 @@ class App extends Component {
     return (
       <div className="app">
         <Header />
-        <Page>
-          <UserList />
-        </Page>
+        <Page />
       </div>
     );
   }
