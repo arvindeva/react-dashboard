@@ -2,11 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
-import UserList from './UserList';
+import UserTable from '../components/UserTable';
 
 const StyledUsersPage = styled.div`
-  margin-left: 30px;
-  margin-right: 30px;
+
 `;
 
 class UsersPage extends React.Component {
@@ -30,7 +29,7 @@ class UsersPage extends React.Component {
         </div>
         <div className="ui divider" />
         <div>
-          <UserList users={this.state.users}/>
+          <UserTable users={this.state.users}/>
         </div>
       </StyledUsersPage>
     );
