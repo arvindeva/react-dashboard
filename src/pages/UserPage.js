@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import PostList from '../components/PostList';
 import AlbumList from '../components/AlbumList';
-import PostForm from '../components/PostForm';
+import NewPostForm from '../components/NewPostForm';
 
 const StyledUserPage = styled.div`
   .add-post-icon {
@@ -116,7 +116,7 @@ class UserPage extends React.Component {
                     />
                   </h3>
                   {this.state.showPostForm ? (
-                    <PostForm
+                    <NewPostForm
                       onInputChange={this.onInputChange}
                       onFormSubmit={this.onFormSubmit}
                       newPost={this.state.newPost}

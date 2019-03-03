@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledPostForm = styled.form``;
+const StyledNewPostForm = styled.form``;
 
-class PostForm extends React.Component {
+class NewPostForm extends React.Component {
 
   onInputChange = e => {
     this.props.onInputChange(e);
@@ -15,7 +15,7 @@ class PostForm extends React.Component {
 
   render() {
     return (
-      <StyledPostForm className="ui form" onSubmit={this.onFormSubmit}>
+      <StyledNewPostForm className="ui form" onSubmit={this.onFormSubmit}>
         <div className="field">
           <label>Title: </label>
           <input
@@ -43,9 +43,9 @@ class PostForm extends React.Component {
         <button className="ui button teal" type="submit">
           Submit
         </button>
-      </StyledPostForm>
+      </StyledNewPostForm>
     );
   }
 }
 
-export default PostForm;
+export default NewPostForm;
