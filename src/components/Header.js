@@ -52,7 +52,7 @@ class Header extends React.Component {
             </div>
             <div className="item">
               <a href="https://github.com/arvindeva/react-dashboard" target="blank">
-                <i class="github icon large" /> 
+                <i className="github icon large" /> 
               </a>
             </div>
           </div>
