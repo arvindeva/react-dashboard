@@ -76,17 +76,25 @@ class UserPage extends React.Component {
       'https://jsonplaceholder.typicode.com/posts',
       this.state.newPost
     );
-    const newPost = newPostResponse.data
+    const newPost = newPostResponse.data;
     this.setState(prevState => ({
       posts: [newPost, ...prevState.posts]
-    }))
+    }));
   };
 
   render() {
     return (
       <StyledUserPage>
         <div>
-          <h1>{this.state.user.name}</h1>
+          <h1>
+            {this.state.user.name ? (
+              this.state.user.name
+            ) : (
+              <div class="ui placeholder">
+                <div class="line" />
+              </div>
+            )}
+          </h1>
           <div className="ui divider" />
           <p>User Name: {this.state.user.username}</p>
           <p>Email: {this.state.user.email}</p>

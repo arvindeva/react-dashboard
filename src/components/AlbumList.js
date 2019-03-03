@@ -5,12 +5,12 @@ import Album from './Album';
 const AlbumList = props => {
   const list = props.albums;
   return (
-    <div className="ui list">
+    <div className="ui items">
       {list ? (
         list.map(album => {
           return (
             <div className="item" key={album.id}>
-              <Album album={album} />
+              <Album album={album} user={props.user} />
             </div>
           );
         })

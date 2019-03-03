@@ -1,29 +1,26 @@
 import React from 'react';
-import styled from 'styled-components';
+//import styled from 'styled-components';
 
-const StyledPhoto = styled.div`
-  display: flex;
-  align-items: center;
-  .photo-detail {
-    margin-left: 20px;
-  }
-`;
+//const StyledPhoto = styled.div``;
 
 const Photo = props => {
   return (
-    <StyledPhoto>
-      <div>
+    <div className="item">
+      <div className="image">
         <img
           className="ui small image"
           src={props.photo.url}
           alt={props.photo.title}
         />
       </div>
-      <div className="photo-detail">
-        <h2>{props.photo.title}</h2>
+      <div className="content">
+        <div className="header">
+          <h2>{props.photo.title}</h2>
+        </div>
         <p>{props.photo.url}</p>
+        <p>By: {props.user.name}</p>
       </div>
-    </StyledPhoto>
+    </div>
   );
 };
 

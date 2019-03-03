@@ -6,16 +6,12 @@ const PhotoList = props => {
   const list = props.photos;
 
   return (
-    <div className="ui list">
+    <div className="ui items">
       {list.map(photo => {
-          return (
-            <div className="item" key={photo.id}>
-              <Photo photo={photo} />
-            </div>
-          );
-        })}
+        return <Photo photo={photo} key={photo.id} user={props.user}/>;
+      })}
     </div>
-  )
-}
+  );
+};
 
 export default PhotoList;

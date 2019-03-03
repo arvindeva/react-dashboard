@@ -6,6 +6,7 @@ import UsersPage from '../pages/UsersPage';
 import UserPage from '../pages/UserPage';
 import PostPage from '../pages/PostPage';
 import AlbumPage from '../pages/AlbumPage';
+import AboutPage from '../pages/AboutPage';
 
 const StyledPage = styled.div`
   margin-top: 80px;
@@ -23,6 +24,7 @@ class Page extends React.Component {
           <Route exact path="/users/:userId" component={UserPage} />
           <Route exact path="/posts/:postId" component={PostPage} />
           <Route exact path="/albums/:albumId" component={AlbumPage} />
+          <Route exact path="/about" component={AboutPage} />
         </Switch>
       </StyledPage>
     );

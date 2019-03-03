@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 const Album = props => {
   return (
-    <div className="item">
+    <div className="album">
       <h2>
         <Link
           to={{
             pathname: `/albums/${props.album.id}`,
-            state: { id: props.album.id }
+            state: { id: props.album.id, userId: props.album.userId }
           }}
         >
           {props.album.title}

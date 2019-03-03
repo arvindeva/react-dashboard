@@ -15,7 +15,11 @@ const StyledHeader = styled.div`
     height: 50px;
     align-items: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
-    background-color: white;
+    background-color: #008080;
+
+    a {
+      color: white;
+    }
 
     .nav-items {
       display: flex;
@@ -43,7 +47,14 @@ class Header extends React.Component {
             <div className="item">
               <Link to="/">Users</Link>
             </div>
-            <div className="item">Posts</div>
+            <div className="item">
+              <Link to="/about">About</Link>
+            </div>
+            <div className="item">
+              <a href="https://github.com/arvindeva/react-dashboard" target="blank">
+                <i class="github icon large" /> 
+              </a>
+            </div>
           </div>
         </div>
       </StyledHeader>
