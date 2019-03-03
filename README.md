@@ -1,4 +1,4 @@
-## Social Media Dashboard
+# Social Media Dashboard
 
 This is a tiny project using React where user, as an admin, can do the following:
 * View list of users
@@ -10,3 +10,9 @@ This is a tiny project using React where user, as an admin, can do the following
 * Can add, edit and delete post
 * Can add, edit and delete comment
 
+## Libraries/Framkeworks used
+
+* React for view library
+* Create React App for boilerplate
+* Styled Components for CSS
+* Axios for HTTP requests

@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import PhotoList from '../components/PhotoList';
+
 class AlbumPage extends React.Component {
   state = {
     album: {},
@@ -33,6 +35,10 @@ class AlbumPage extends React.Component {
     return (
       <div>
         <h1>{this.state.album.title}</h1>
+        <div className="ui divider" />
+        <div>
+          <PhotoList photos={this.state.photos} />
+        </div>
       </div>
     );
   }
