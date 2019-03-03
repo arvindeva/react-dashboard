@@ -20,7 +20,7 @@ class AlbumPage extends React.Component {
       albumId = this.props.match.params.albumId;
     }
 
-    this.setState({ isLoading: true })
+    this.setState({ isLoading: true });
     let albumResponse = await axios.get(
       `https://jsonplaceholder.typicode.com/albums/${albumId}`
     );
@@ -40,11 +40,16 @@ class AlbumPage extends React.Component {
   }
 
   render() {
-
     return (
       <div>
         <h1>
-          {!this.state.isLoading ? this.state.album.title : 'LOADING' }
+          {!this.state.isLoading ? (
+            this.state.album.title
+          ) : (
+            <div className="ui placeholder">
+              <div className="line" />
+            </div>
+          )}
         </h1>
         <p>
           Album By:{' '}
@@ -59,7 +64,11 @@ class AlbumPage extends React.Component {
         </p>
         <div className="ui divider" />
         <div>
-          <PhotoList photos={this.state.photos} user={this.state.user} />
+          {!this.state.isLoading ? (
+            <PhotoList photos={this.state.photos} user={this.state.user} />
+          ) : (
+            <div className="ui active inline loader" />
+          )}
         </div>
       </div>
     );

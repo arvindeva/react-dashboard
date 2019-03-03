@@ -18,7 +18,7 @@ const Photo = props => {
         <div className="header">
           <h2>{props.photo.title}</h2>
         </div>
-        <p>{props.photo.url}</p>
+        <p>Photo URL: <a href={props.photo.url} target="blank">{props.photo.url}</a></p>
         <p>By: {props.user.name}</p>
       </div>
     </div>

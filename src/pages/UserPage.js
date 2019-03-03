@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
+import UserDetail from '../components/UserDetail';
 import PostList from '../components/PostList';
 import AlbumList from '../components/AlbumList';
 import NewPostForm from '../components/NewPostForm';
@@ -22,10 +23,12 @@ class UserPage extends React.Component {
       title: '',
       body: ''
     },
-    isLoading: true
+    isLoading: true,
+    loadingNewPost: false
   };
 
   async componentDidMount() {
+    // Get userId from Link
     let userId = this.props.location.state ? this.props.location.state.id : 0;
 
     // Use params if user use URL directly
@@ -37,19 +40,22 @@ class UserPage extends React.Component {
       `https://jsonplaceholder.typicode.com/users/${userId}`
     );
     let user = userResponse.data;
-    this.setState({ user: user });
 
     let postsResponse = await axios.get(
       `https://jsonplaceholder.typicode.com/posts?userId=${userId}`
     );
     let posts = postsResponse.data;
-    this.setState({ posts: posts });
 
     let albumsResponse = await axios.get(
       `https://jsonplaceholder.typicode.com/albums?userId=${userId}`
     );
     let albums = albumsResponse.data;
-    this.setState({ albums: albums });
+    this.setState({
+      user: user,
+      posts: posts,
+      albums: albums,
+      isLoading: false
+    });
   }
 
   toggleNewPost = () => {
@@ -73,6 +79,7 @@ class UserPage extends React.Component {
 
   onFormSubmit = async e => {
     e.preventDefault();
+    this.setState({ loadingNewPost: true });
     let newPostResponse = await axios.post(
       'https://jsonplaceholder.typicode.com/posts',
       this.state.newPost
@@ -81,7 +88,8 @@ class UserPage extends React.Component {
 
     this.setState(prevState => ({
       posts: [newPost, ...prevState.posts],
-      showPostForm: !prevState.showPostForm // Close the form
+      showPostForm: !prevState.showPostForm, // Close the form
+      loadingNewPost: false
     }));
   };
 
@@ -93,16 +101,13 @@ class UserPage extends React.Component {
             {this.state.user.name ? (
               this.state.user.name
             ) : (
-              <div class="ui placeholder">
-                <div class="line" />
+              <div className="ui placeholder">
+                <div className="line" />
               </div>
             )}
           </h1>
           <div className="ui divider" />
-          <p>User Name: {this.state.user.username}</p>
-          <p>Email: {this.state.user.email}</p>
-          <p>Phone: {this.state.user.phone}</p>
-          <p>Website: {this.state.user.website}</p>
+          <UserDetail user={this.state.user} />
         </div>
         <div className="ui divider" />
         <div className="ui stackable grid">
@@ -128,11 +133,18 @@ class UserPage extends React.Component {
                     <div />
                   )}
                 </div>
-                <PostList
-                  user={this.state.user}
-                  posts={this.state.posts}
-                  albums={this.state.albums}
-                />
+                {this.state.loadingNewPost ? (
+                  <div className="ui active centered inline loader" />
+                ) : null}
+                {!this.state.isLoading ? (
+                  <PostList
+                    user={this.state.user}
+                    posts={this.state.posts}
+                    albums={this.state.albums}
+                  />
+                ) : (
+                  <div className="ui active inline loader" />
+                )}
               </div>
             </div>
           </div>
@@ -140,11 +152,15 @@ class UserPage extends React.Component {
             <div className="ui fluid card">
               <div className="content">
                 <h1>Albums</h1>
-                <AlbumList
-                  user={this.state.user}
-                  posts={this.state.posts}
-                  albums={this.state.albums}
-                />
+                {!this.state.isLoading ? (
+                  <AlbumList
+                    user={this.state.user}
+                    posts={this.state.posts}
+                    albums={this.state.albums}
+                  />
+                ) : (
+                  <div className="ui active inline loader" />
+                )}
               </div>
             </div>
           </div>
