@@ -1,6 +1,6 @@
 # Social Media Dashboard
 
-This is a tiny project using React where user, as an admin, can do the following:
+This is a tiny project using React to interact with [JSON Placeholder API](https://jsonplaceholder.typicode.com/) where user, as an admin, can do the following:
 * View list of users
 * View list of posts of each user
 * View list of albums of each user
