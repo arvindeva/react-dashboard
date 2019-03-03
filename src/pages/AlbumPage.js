@@ -8,7 +8,8 @@ class AlbumPage extends React.Component {
   state = {
     user: {},
     album: {},
-    photos: []
+    photos: [],
+    isLoading: true
   };
 
   async componentDidMount() {
@@ -18,12 +19,13 @@ class AlbumPage extends React.Component {
     if (!albumId) {
       albumId = this.props.match.params.albumId;
     }
+
+    this.setState({ isLoading: true })
     let albumResponse = await axios.get(
       `https://jsonplaceholder.typicode.com/albums/${albumId}`
     );
     const album = albumResponse.data;
     this.setState({ album: album });
-
     let photosResponse = await axios.get(
       `https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`
     );
@@ -34,20 +36,15 @@ class AlbumPage extends React.Component {
       `https://jsonplaceholder.typicode.com/users/${this.state.album.userId}`
     );
     let user = userResponse.data;
-    this.setState({ user: user });
+    this.setState({ user: user, isLoading: false });
   }
 
   render() {
+
     return (
       <div>
         <h1>
-          {this.state.album ? (
-            this.state.album.title
-          ) : (
-            <div class="ui placeholder">
-              <div class="line" />
-            </div>
-          )}
+          {!this.state.isLoading ? this.state.album.title : 'LOADING' }
         </h1>
         <p>
           Album By:{' '}

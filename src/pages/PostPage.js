@@ -1,8 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import axios from 'axios';
 
 import CommentList from '../components/CommentList';
+
+const StyledPostPage = styled.div`
+  .icons {
+    cursor: pointer;
+  }
+`;
 
 class PostPage extends React.Component {
   state = {
@@ -39,7 +46,7 @@ class PostPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <StyledPostPage>
         <h1>{this.state.post.title}</h1>
         <p>
           Posted by:{' '}
@@ -53,6 +60,10 @@ class PostPage extends React.Component {
           </Link>
         </p>
         <p>{this.state.post.body}</p>
+        <div className="icons">
+          <i class="pencil alternate large icon teal edit-icon" />
+          <i class="trash alternate large icon teal" />
+        </div>
         <div className="ui divider" />
         <h1>Comments</h1>
         <CommentList
@@ -60,7 +71,7 @@ class PostPage extends React.Component {
           comments={this.state.comments}
           type="comments"
         />
-      </div>
+      </StyledPostPage>
     );
   }
 }

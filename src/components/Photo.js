@@ -1,15 +1,16 @@
 import React from 'react';
-//import styled from 'styled-components';
+// import styled from 'styled-components';
 
-//const StyledPhoto = styled.div``;
+// const StyledPhoto = styled.div`
+
+// `;
 
 const Photo = props => {
   return (
     <div className="item">
-      <div className="image">
+      <div className="ui image">
         <img
-          className="ui small image"
-          src={props.photo.url}
+          src={props.photo.thumbnailUrl}
           alt={props.photo.title}
         />
       </div>

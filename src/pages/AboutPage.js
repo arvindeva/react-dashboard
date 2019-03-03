@@ -15,7 +15,11 @@ class AboutPage extends React.Component {
   }
 
   render() {
-    return <ReactMarkdown source={this.state.readMe} />
+    return this.state.readMe ? (
+      <ReactMarkdown source={this.state.readMe} />
+    ) : (
+      "Loading"
+    );
   }
 }
 

@@ -21,7 +21,8 @@ class UserPage extends React.Component {
     newPost: {
       title: '',
       body: ''
-    }
+    },
+    isLoading: true
   };
 
   async componentDidMount() {
@@ -77,8 +78,10 @@ class UserPage extends React.Component {
       this.state.newPost
     );
     const newPost = newPostResponse.data;
+
     this.setState(prevState => ({
-      posts: [newPost, ...prevState.posts]
+      posts: [newPost, ...prevState.posts],
+      showPostForm: !prevState.showPostForm // Close the form
     }));
   };
 

@@ -16,6 +16,7 @@ This is a tiny project using React to interact with [JSON Placeholder API](https
 * Create React App for boilerplate
 * React Router for routing
 * React Markdown for markdown rendering
+* Semantic-UI for CSS framework
 * Styled Components for CSS-in-JS
 * Axios for HTTP requests
 * Jest and Enzyme for testing
