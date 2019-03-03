@@ -8,7 +8,7 @@ const Post = props => {
       <Link
         to={{
           pathname: `/posts/${props.post.id}`,
-          state: { id: props.post.id }
+          state: { id: props.post.id, userId: props.post.userId }
         }}
       >
         <h2>{props.post.title}</h2>

@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Album = props => {
-  console.log(props.album);
   return (
     <div className="item">
       <h2>

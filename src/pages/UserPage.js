@@ -4,14 +4,24 @@ import styled from 'styled-components';
 
 import PostList from '../components/PostList';
 import AlbumList from '../components/AlbumList';
+import PostForm from '../components/PostForm';
 
-const StyledUserPage = styled.div``;
+const StyledUserPage = styled.div`
+  .add-post-icon {
+    cursor: pointer;
+  }
+`;
 
 class UserPage extends React.Component {
   state = {
     user: {},
     posts: [],
-    albums: []
+    albums: [],
+    showPostForm: false,
+    newPost: {
+      title: '',
+      body: ''
+    }
   };
 
   async componentDidMount() {
@@ -41,6 +51,25 @@ class UserPage extends React.Component {
     this.setState({ albums: albums });
   }
 
+  toggleNewPost = () => {
+    this.setState(prevState => ({
+      showPostForm: !prevState.showPostForm
+    }));
+  };
+
+  onInputChange = e => {
+    let value = e.target.value;
+    let name = e.target.name;
+    this.setState(prevState => {
+      return {
+        newPost: {
+          ...prevState.newPost,
+          [name]: value
+        }
+      };
+    });
+  };
+
   render() {
     return (
       <StyledUserPage>
@@ -58,6 +87,20 @@ class UserPage extends React.Component {
             <div className="ui fluid card">
               <div className="content">
                 <h1>Posts</h1>
+                <div className="add-post">
+                  <h3>
+                    Add Post!
+                    <i
+                      className="teal plus square icon add-post-icon"
+                      onClick={this.toggleNewPost}
+                    />
+                  </h3>
+                  {this.state.showPostForm ? (
+                    <PostForm onInputChange={this.onInputChange} newPost={this.state.newPost}/>
+                  ) : (
+                    <div />
+                  )}
+                </div>
                 <PostList
                   user={this.state.user}
                   posts={this.state.posts}

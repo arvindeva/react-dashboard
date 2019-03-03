@@ -10,7 +10,7 @@ const PostList = props => {
         props.posts.map(post => {
           return (
             <div className="item" key={post.id}>
-              <Post post={post} />
+              <Post post={post} user={props.user} />
             </div>
           );
         })

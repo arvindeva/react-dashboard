@@ -2,17 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledPhoto = styled.div`
-  display: grid;
+  display: flex;
+  align-items: center;
+  .photo-detail {
+    margin-left: 20px;
+  }
 `;
 
 const Photo = props => {
   return (
     <StyledPhoto>
-      <img className="ui small image" src={props.photo.url} alt={props.photo.title}/>
-      <div className="">
+      <div>
+        <img
+          className="ui small image"
+          src={props.photo.url}
+          alt={props.photo.title}
+        />
+      </div>
+      <div className="photo-detail">
         <h2>{props.photo.title}</h2>
-        <div>Edit</div>
-        <div>Delete</div>
+        <p>{props.photo.url}</p>
       </div>
     </StyledPhoto>
   );
