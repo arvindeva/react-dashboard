@@ -9,7 +9,7 @@ const PostList = props => {
       {list ? (
         props.posts.map(post => {
           return (
-            <div className="item" key={post.id}>
+            <div className="item" key={`${post.id}`}>
               <Post post={post} user={props.user} />
             </div>
           );

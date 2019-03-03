@@ -10,7 +10,7 @@ class PostForm extends React.Component {
   };
 
   onFormSubmit = e => {
-    e.preventDefault();
+   this.props.onFormSubmit(e);
   };
 
   render() {
@@ -23,6 +23,7 @@ class PostForm extends React.Component {
             name="title"
             placeholder="Enter Post Title"
             autoComplete="off"
+            required
             value={this.props.newPost.title}
             onChange={this.onInputChange}
           />
@@ -34,6 +35,7 @@ class PostForm extends React.Component {
             type="text"
             name="body"
             placeholder="Enter Post Body"
+            required
             value={this.props.newPost.body}
             onChange={this.onInputChange}
           />

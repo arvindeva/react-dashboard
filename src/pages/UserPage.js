@@ -70,6 +70,18 @@ class UserPage extends React.Component {
     });
   };
 
+  onFormSubmit = async e => {
+    e.preventDefault();
+    let newPostResponse = await axios.post(
+      'https://jsonplaceholder.typicode.com/posts',
+      this.state.newPost
+    );
+    const newPost = newPostResponse.data
+    this.setState(prevState => ({
+      posts: [newPost, ...prevState.posts]
+    }))
+  };
+
   render() {
     return (
       <StyledUserPage>
@@ -96,7 +108,11 @@ class UserPage extends React.Component {
                     />
                   </h3>
                   {this.state.showPostForm ? (
-                    <PostForm onInputChange={this.onInputChange} newPost={this.state.newPost}/>
+                    <PostForm
+                      onInputChange={this.onInputChange}
+                      onFormSubmit={this.onFormSubmit}
+                      newPost={this.state.newPost}
+                    />
                   ) : (
                     <div />
                   )}
