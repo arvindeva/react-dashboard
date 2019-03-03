@@ -9,8 +9,8 @@ import AlbumPage from '../pages/AlbumPage';
 
 const StyledPage = styled.div`
   margin-top: 80px;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 5%;
+  margin-right: 5%;
   z-index: 0;
 `;
 

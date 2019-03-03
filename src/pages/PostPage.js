@@ -1,8 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-
-import PostList from '../components/PostList'
+import CommentList from '../components/CommentList';
 
 class PostPage extends React.Component {
   state = {
@@ -37,7 +36,7 @@ class PostPage extends React.Component {
         <p>{this.state.post.body}</p>
         <div className="ui divider" />
         <h1>Comments</h1>
-        <PostList comment={this.state.comment} comments={this.state.comments} type="comments" />
+        <CommentList comment={this.state.comment} comments={this.state.comments} type="comments" />
       </div>
     );
   }
