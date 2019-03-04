@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const UserDetail = props => {
   return (
@@ -11,4 +12,10 @@ const UserDetail = props => {
   );
 };
 
-export default UserDetail;
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(UserDetail);

@@ -1,5 +1,6 @@
 import React from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { fetchUsers } from '../actions/users';
 import styled from 'styled-components';
 
 import UserTable from '../components/UserTable';
@@ -10,11 +11,9 @@ class UsersPage extends React.Component {
   state = {
     users: []
   };
-
   async componentDidMount() {
-    let res = await axios.get(`https://jsonplaceholder.typicode.com/users`);
-    const users = res.data;
-    this.setState({ users });
+    this.props.fetchUsers();
+
   }
 
   render() {
@@ -25,11 +24,28 @@ class UsersPage extends React.Component {
         </div>
         <div className="ui divider" />
         <div>
-          <UserTable users={this.state.users} />
+          <UserTable />
         </div>
       </StyledUsersPage>
     );
   }
 }
 
-export default UsersPage;
+const mapStateToProps = state => {
+  return {
+    users: state.users
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchUsers: () => {
+      dispatch(fetchUsers());
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UsersPage);

@@ -4,13 +4,22 @@ import styled from 'styled-components';
 const StyledNewPostForm = styled.form``;
 
 class NewPostForm extends React.Component {
+  state = {
+    title: '',
+    body: ''
+  };
 
   onInputChange = e => {
-    this.props.onInputChange(e);
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   };
 
   onFormSubmit = e => {
-   this.props.onFormSubmit(e);
+    e.preventDefault();
+    if (this.state.title.trim() && this.state.body.trim()) {
+      console.log(this.state);
+    }
   };
 
   render() {
@@ -24,7 +33,7 @@ class NewPostForm extends React.Component {
             placeholder="Enter Post Title"
             autoComplete="off"
             required
-            value={this.props.newPost.title}
+            value={this.state.title}
             onChange={this.onInputChange}
           />
         </div>
@@ -36,7 +45,7 @@ class NewPostForm extends React.Component {
             name="body"
             placeholder="Enter Post Body"
             required
-            value={this.props.newPost.body}
+            value={this.state.body}
             onChange={this.onInputChange}
           />
         </div>

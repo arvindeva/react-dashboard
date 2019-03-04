@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import UserEntry from './UserEntry';
+import { connect } from 'react-redux';
 
 const StyledUserTable = styled.table.attrs({
   className: 'ui single line table'
@@ -12,6 +13,7 @@ const StyledUserTable = styled.table.attrs({
 `;
 
 const UserTable = props => {
+  console.log(props.users);
   return (
     <StyledUserTable>
       <thead>
@@ -32,4 +34,10 @@ const UserTable = props => {
   );
 };
 
-export default UserTable;
+const mapStateToProps = state => {
+  return {
+    users: state.users
+  }
+}
+
+export default connect(mapStateToProps)(UserTable);

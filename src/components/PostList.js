@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Post from './Post';
 
@@ -21,4 +22,10 @@ const PostList = props => {
   );
 };
 
-export default PostList;
+const mapStateToProps = state => {
+  return {
+    posts: state.posts
+  }
+}
+
+export default connect(mapStateToProps)(PostList);

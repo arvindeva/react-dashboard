@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Album from './Album';
 
@@ -21,4 +22,10 @@ const AlbumList = props => {
   );
 };
 
-export default AlbumList;
+const mapStateToProps = state => {
+  return {
+    albums: state.albums
+  }
+}
+
+export default connect(mapStateToProps)(AlbumList);
