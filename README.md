@@ -3,7 +3,22 @@
 ## Deployed Site
 [https://evening-savannah-47143.herokuapp.com/](https://evening-savannah-47143.herokuapp.com/)
 
-## About this site
+Please note Heroku might be asleep, so opening the site for the first time might take some time.
+
+## How to run locally
+
+Make sure you have node installed. You can download it [here](https://nodejs.org/en/download/)
+
+
+Then you can clone this repo, install dependendencies, and start using the following command:
+
+```bash
+$ git clone https://github.com/arvindeva/react-dashboard.git
+$ npm install
+$ npm start
+```
+
+## About this app
 
 This is a tiny project using React to interact with [JSON Placeholder API](https://jsonplaceholder.typicode.com/) where user, as an admin, can do the following:
 * View list of users
