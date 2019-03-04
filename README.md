@@ -1,5 +1,10 @@
 # Social Media Dashboard
 
+##Deployed Site
+[https://evening-savannah-47143.herokuapp.com/](https://evening-savannah-47143.herokuapp.com/)
+
+## About this site
+
 This is a tiny project using React to interact with [JSON Placeholder API](https://jsonplaceholder.typicode.com/) where user, as an admin, can do the following:
 * View list of users
 * View list of posts of each user
