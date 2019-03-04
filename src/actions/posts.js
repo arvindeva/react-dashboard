@@ -3,10 +3,11 @@ import axios from 'axios';
 
 const apiUrl = 'https://jsonplaceholder.typicode.com';
 
-export const addPost = ({ title, body }) => dispatch => {
+export const addPost = (title, body) => dispatch => {
   axios
     .post(`${apiUrl}/posts`, { title, body })
     .then(response => {
+      console.log(response.data);
       dispatch(addPostSuccess(response.data));
     })
     .catch(error => {
@@ -26,17 +27,22 @@ export const addPostSuccess = data => {
 };
 
 export const deletePost = id => dispatch => {
+  console.log(`Trying to delete ${apiUrl}/posts/${id}`)
   axios
     .delete(`${apiUrl}/posts/${id}`)
     .then(response => {
-      dispatch(deletePostSuccess(response.data));
+      console.log(response.status);
+      dispatch(deletePostSuccess(id));
+      alert(`Deleted post with id: ${id}, Response status code: ${response.status}`)
     })
     .catch(error => {
       throw error;
     });
+    
 };
 
 export const deletePostSuccess = id => {
+  console.log('inside success: ' + id);
   return {
     type: DELETE_POST,
     payload: {

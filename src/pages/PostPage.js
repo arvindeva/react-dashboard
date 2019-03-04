@@ -5,18 +5,20 @@ import { fetchPost } from '../actions/post';
 import { fetchUser } from '../actions/user';
 import { fetchComments } from '../actions/comments';
 import styled from 'styled-components';
-import axios from 'axios';
 
 import CommentList from '../components/CommentList';
+import NewCommentForm from '../components/NewCommentForm';
 
 const StyledPostPage = styled.div`
-  .icons {
+  .add-comment-icon {
     cursor: pointer;
   }
 `;
 
 class PostPage extends React.Component {
-
+  state = {
+    showCommentForm: false
+  };
   async componentDidMount() {
     let postId = this.props.location.state ? this.props.location.state.id : 0;
     // Use params if user use URL directly
@@ -27,19 +29,13 @@ class PostPage extends React.Component {
     this.props.fetchPost(postId);
     this.props.fetchUser(this.props.user.id);
     this.props.fetchComments(postId);
-
-    let postResponse = await axios.get(
-      `https://jsonplaceholder.typicode.com/posts/${postId}`
-    );
-    let post = postResponse.data;
-    this.setState({ post: post });
-
-    let userResponse = await axios.get(
-      `https://jsonplaceholder.typicode.com/users/${this.state.post.userId}`
-    );
-    let user = userResponse.data;
-    this.setState({ user: user });
   }
+
+  toggleNewComment = () => {
+    this.setState(prevState => ({
+      showCommentForm: !prevState.showCommentForm
+    }));
+  };
 
   render() {
     return (
@@ -57,12 +53,19 @@ class PostPage extends React.Component {
           </Link>
         </p>
         <p>{this.props.post.body}</p>
-        <div className="icons">
-          <i class="pencil alternate large icon teal edit-icon" />
-          <i class="trash alternate large icon teal" />
-        </div>
         <div className="ui divider" />
         <h1>Comments</h1>
+        <div className="add-comment">
+          <h3>
+            Add Comment!
+            <i
+              className="teal plus square icon add-comment-icon"
+              onClick={this.toggleNewComment}
+            />
+          </h3>
+          {this.state.showCommentForm ? <NewCommentForm /> : <div />}
+        </div>
+        <div className="ui divider" />
         <CommentList
           comment={this.props.comment}
           comments={this.props.comments}

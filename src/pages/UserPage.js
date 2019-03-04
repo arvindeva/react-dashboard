@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/posts';
 import { fetchUser } from '../actions/user';
 import { fetchAlbums } from '../actions/albums';
-import axios from 'axios';
 import styled from 'styled-components';
 
 import UserDetail from '../components/UserDetail';
@@ -20,10 +19,6 @@ const StyledUserPage = styled.div`
 class UserPage extends React.Component {
   state = {
     showPostForm: false,
-    newPost: {
-      title: '',
-      body: ''
-    }
   };
 
   async componentDidMount() {
@@ -43,35 +38,6 @@ class UserPage extends React.Component {
   toggleNewPost = () => {
     this.setState(prevState => ({
       showPostForm: !prevState.showPostForm
-    }));
-  };
-
-  onInputChange = e => {
-    let value = e.target.value;
-    let name = e.target.name;
-    this.setState(prevState => {
-      return {
-        newPost: {
-          ...prevState.newPost,
-          [name]: value
-        }
-      };
-    });
-  };
-
-  onFormSubmit = async e => {
-    e.preventDefault();
-    this.setState({ loadingNewPost: true });
-    let newPostResponse = await axios.post(
-      'https://jsonplaceholder.typicode.com/posts',
-      this.state.newPost
-    );
-    const newPost = newPostResponse.data;
-
-    this.setState(prevState => ({
-      posts: [newPost, ...prevState.posts],
-      showPostForm: !prevState.showPostForm, // Close the form
-      loadingNewPost: false
     }));
   };
 

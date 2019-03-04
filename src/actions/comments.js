@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const apiUrl = 'https://jsonplaceholder.typicode.com';
 
-export const addComment = ({ name, email, body }) => dispatch => {
+export const addComment = ( name, email, body ) => dispatch => {
   axios
     .post(`${apiUrl}/comments`, { name, email, body })
     .then(response => {
@@ -27,10 +27,12 @@ export const addCommentSuccess = data => {
 };
 
 export const deleteComment = id => dispatch => {
+  console.log(`Trying to delete ${apiUrl}/comments/${id}`)
   axios
     .delete(`${apiUrl}/comments/${id}`)
     .then(response => {
-      dispatch(deleteCommentSuccess(response.data));
+      dispatch(deleteCommentSuccess(id));
+      alert(`Deleted comment with id: ${id}, Response status code: ${response.status}`)
     })
     .catch(error => {
       throw error;

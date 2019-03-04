@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { addPost } from '../actions/posts';
+import { addComment } from '../actions/comments';
 
-const StyledNewPostForm = styled.form``;
+const StyledNewCommentForm = styled.form``;
 
-class NewPostForm extends React.Component {
+class NewCommentForm extends React.Component {
   state = {
-    title: '',
+    name: '',
+    email: '',
     body: ''
   };
 
@@ -19,25 +20,38 @@ class NewPostForm extends React.Component {
 
   onFormSubmit = e => {
     e.preventDefault();
-    this.props.addPost(this.state.title, this.state.body);
-    this.setState( {
-      title: '',
+    this.props.addComment(this.state.name, this.state.email, this.state.body);
+    this.setState({
+      name: '',
+      email: '',
       body: ''
-    })
+    }); 
   };
 
   render() {
     return (
-      <StyledNewPostForm className="ui form" onSubmit={this.onFormSubmit}>
+      <StyledNewCommentForm className="ui form" onSubmit={this.onFormSubmit}>
         <div className="field">
-          <label>Title: </label>
+          <label>Name: </label>
           <input
             type="text"
-            name="title"
-            placeholder="Enter Post Title"
+            name="name"
+            placeholder="Enter Comment Name"
             autoComplete="off"
             required
-            value={this.state.title}
+            value={this.state.name}
+            onChange={this.onInputChange}
+          />
+        </div>
+        <div className="field">
+          <label>Email: </label>
+          <input
+            type="text"
+            name="email"
+            placeholder="Enter Email"
+            autoComplete="off"
+            required
+            value={this.state.email}
             onChange={this.onInputChange}
           />
         </div>
@@ -56,15 +70,15 @@ class NewPostForm extends React.Component {
         <button className="ui button teal" type="submit">
           Submit
         </button>
-      </StyledNewPostForm>
+      </StyledNewCommentForm>
     );
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    addPost: (title, body) => {
-      dispatch(addPost(title, body));
+    addComment: (name, email, body) => {
+      dispatch(addComment(name, email, body));
     }
   };
 };
@@ -72,4 +86,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(NewPostForm);
+)(NewCommentForm);
