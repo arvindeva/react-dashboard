@@ -1,9 +1,10 @@
 # Social Media Dashboard
 
 ## Deployed Site
-[https://evening-savannah-47143.herokuapp.com/](https://evening-savannah-47143.herokuapp.com/)
+now: [https://react-dashboard-i4blzmpu4.now.sh/](https://react-dashboard-i4blzmpu4.now.sh/)
+Heroku: [https://evening-savannah-47143.herokuapp.com/](https://evening-savannah-47143.herokuapp.com/)
 
-Please note Heroku might be asleep, so opening the site for the first time might take some time.
+I deployed on now and Heroku. Please note Heroku might be asleep, so opening the site for the first time might take some time.
 
 ## How to run locally
 
