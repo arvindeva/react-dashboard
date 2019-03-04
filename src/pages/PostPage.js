@@ -1,5 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchPost } from '../actions/post';
+import { fetchUser } from '../actions/user';
+import { fetchComments } from '../actions/comments';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -12,11 +16,6 @@ const StyledPostPage = styled.div`
 `;
 
 class PostPage extends React.Component {
-  state = {
-    post: {},
-    user: {},
-    comments: []
-  };
 
   async componentDidMount() {
     let postId = this.props.location.state ? this.props.location.state.id : 0;
@@ -24,6 +23,10 @@ class PostPage extends React.Component {
     if (!postId) {
       postId = this.props.match.params.postId;
     }
+
+    this.props.fetchPost(postId);
+    this.props.fetchUser(this.props.user.id);
+    this.props.fetchComments(postId);
 
     let postResponse = await axios.get(
       `https://jsonplaceholder.typicode.com/posts/${postId}`
@@ -36,30 +39,24 @@ class PostPage extends React.Component {
     );
     let user = userResponse.data;
     this.setState({ user: user });
-
-    let commentsResponse = await axios.get(
-      `https://jsonplaceholder.typicode.com/comments?postId=${postId}`
-    );
-    let comments = commentsResponse.data;
-    this.setState({ comments: comments });
   }
 
   render() {
     return (
       <StyledPostPage>
-        <h1>{this.state.post.title}</h1>
+        <h1>{this.props.post.title}</h1>
         <p>
           Posted by:{' '}
           <Link
             to={{
-              pathname: `/users/${this.state.user.id}`,
-              state: { id: this.state.user.id }
+              pathname: `/users/${this.props.user.id}`,
+              props: { id: this.props.user.id }
             }}
           >
-            {this.state.user.name}
+            {this.props.user.name}
           </Link>
         </p>
-        <p>{this.state.post.body}</p>
+        <p>{this.props.post.body}</p>
         <div className="icons">
           <i class="pencil alternate large icon teal edit-icon" />
           <i class="trash alternate large icon teal" />
@@ -67,8 +64,8 @@ class PostPage extends React.Component {
         <div className="ui divider" />
         <h1>Comments</h1>
         <CommentList
-          comment={this.state.comment}
-          comments={this.state.comments}
+          comment={this.props.comment}
+          comments={this.props.comments}
           type="comments"
         />
       </StyledPostPage>
@@ -76,4 +73,29 @@ class PostPage extends React.Component {
   }
 }
 
-export default PostPage;
+const mapStateToProps = state => {
+  return {
+    post: state.post,
+    comments: state.comments,
+    user: state.user
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchPost: postId => {
+      dispatch(fetchPost(postId));
+    },
+    fetchUser: userId => {
+      dispatch(fetchUser(userId));
+    },
+    fetchComments: postId => {
+      dispatch(fetchComments(postId));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PostPage);
