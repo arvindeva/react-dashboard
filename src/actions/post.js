@@ -20,3 +20,4 @@ export const fetchPostSuccess = post => {
     post: post
   }
 }
+

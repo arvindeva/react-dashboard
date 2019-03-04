@@ -1,6 +1,6 @@
 import { FETCH_POST } from '../actions/types';
 
-export default function userReducer(state = {}, action) {
+export default function postReducer(state = {}, action) {
   switch (action.type) {
     case FETCH_POST:
       return action.post
@@ -8,5 +8,3 @@ export default function userReducer(state = {}, action) {
       return state;
   }
 }
-
-

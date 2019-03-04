@@ -10,6 +10,10 @@ const Post = props => {
     props.deletePost(props.post.id);
   };
 
+  const onEditClick = e => {
+    e.preventDefault();
+  };
+
   return (
     <div>
       <Link
@@ -21,10 +25,13 @@ const Post = props => {
         {props.post.title}
       </Link>
       <p>{props.post.body}</p>
-      <button className="ui button teal">Edit</button>
+      <button className="ui button teal" onClick={onEditClick}>
+        Edit
+      </button>
       <button className="ui button red" onClick={onDeleteClick}>
         Delete
       </button>
+      <div className="ui item">{/* <EditPost /> */}</div>
     </div>
   );
 };

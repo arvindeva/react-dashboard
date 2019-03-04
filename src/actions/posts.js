@@ -38,7 +38,6 @@ export const deletePost = id => dispatch => {
     .catch(error => {
       throw error;
     });
-    
 };
 
 export const deletePostSuccess = id => {
