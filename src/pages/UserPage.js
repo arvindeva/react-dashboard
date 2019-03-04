@@ -1,4 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { userFetchData } from '../actions/user';
+import { postsFetchData } from '../actions/posts';
+import { albumsFetchData } from '../actions/albums';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -15,49 +19,34 @@ const StyledUserPage = styled.div`
 
 class UserPage extends React.Component {
   state = {
-    user: {},
-    posts: [],
-    comments: [],
+    // user: {},
+    // posts: [],
     albums: [],
-    photos: [],
     showPostForm: false,
     newPost: {
       title: '',
       body: ''
     },
-    isLoading: true,
     loadingNewPost: false
   };
 
   async componentDidMount() {
     // Get userId from Link
     let userId = this.props.location.state ? this.props.location.state.id : 0;
-
     // Use params if user use URL directly
     if (!userId) {
       userId = this.props.match.params.userId;
     }
-
-    let userResponse = await axios.get(
+    this.props.userFetchData(
       `https://jsonplaceholder.typicode.com/users/${userId}`
     );
-    let user = userResponse.data;
-
-    let postsResponse = await axios.get(
+    this.props.postsFetchData(
       `https://jsonplaceholder.typicode.com/posts?userId=${userId}`
     );
-    let posts = postsResponse.data;
 
-    let albumsResponse = await axios.get(
-      `https://jsonplaceholder.typicode.com/albums?userId=${userId}`
+    this.props.albumsFetchData(
+      `https://jsonplaceholder.typicode.com/posts?userId=${userId}`
     );
-    let albums = albumsResponse.data;
-    this.setState({
-      user: user,
-      posts: posts,
-      albums: albums,
-      isLoading: false
-    });
   }
 
   toggleNewPost = () => {
@@ -100,8 +89,8 @@ class UserPage extends React.Component {
       <StyledUserPage>
         <div>
           <h1>
-            {this.state.user.name ? (
-              this.state.user.name
+            {!this.props.userIsLoading ? (
+              this.props.user.name
             ) : (
               <div className="ui placeholder">
                 <div className="line" />
@@ -109,7 +98,7 @@ class UserPage extends React.Component {
             )}
           </h1>
           <div className="ui divider" />
-          <UserDetail user={this.state.user} />
+          <UserDetail user={this.props.user} />
         </div>
         <div className="ui divider" />
         <div className="ui stackable grid">
@@ -138,11 +127,11 @@ class UserPage extends React.Component {
                 {this.state.loadingNewPost ? (
                   <div className="ui active centered inline loader" />
                 ) : null}
-                {!this.state.isLoading ? (
+                {!this.props.postsIsLoading ? (
                   <PostList
-                    user={this.state.user}
-                    posts={this.state.posts}
-                    albums={this.state.albums}
+                    // user={this.props.user}
+                    posts={this.props.posts}
+                    // albums={this.props.albums}
                   />
                 ) : (
                   <div className="ui active inline loader" />
@@ -154,11 +143,11 @@ class UserPage extends React.Component {
             <div className="ui fluid card">
               <div className="content">
                 <h1>Albums</h1>
-                {!this.state.isLoading ? (
+                {!this.props.postsIsLoading ? (
                   <AlbumList
-                    user={this.state.user}
-                    posts={this.state.posts}
-                    albums={this.state.albums}
+                    // user={this.props.user}
+                    // posts={this.props.posts}
+                    albums={this.props.albums}
                   />
                 ) : (
                   <div className="ui active inline loader" />
@@ -172,4 +161,26 @@ class UserPage extends React.Component {
   }
 }
 
-export default UserPage;
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    userIsLoading: state.userIsLoading,
+    posts: state.posts,
+    postsIsLoading: state.postsIsLoading,
+    albums: state.albums,
+    albumsIsLoading: state.albumsIsLoading
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    userFetchData: url => dispatch(userFetchData(url)),
+    postsFetchData: url => dispatch(postsFetchData(url)),
+    albumsFetchData: url => dispatch(albumsFetchData(url))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserPage);

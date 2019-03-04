@@ -61,8 +61,8 @@ class PostPage extends React.Component {
         </p>
         <p>{this.state.post.body}</p>
         <div className="icons">
-          <i class="pencil alternate large icon teal edit-icon" />
-          <i class="trash alternate large icon teal" />
+          <i className="pencil alternate large icon teal edit-icon" />
+          <i className="trash alternate large icon teal" />
         </div>
         <div className="ui divider" />
         <h1>Comments</h1>

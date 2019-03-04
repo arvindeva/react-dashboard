@@ -6,11 +6,13 @@ import configureStore from './store';
 
 import App from './components/App';
 
+const store = configureStore();
+
 ReactDOM.render(
-  <Provider store={configureStore()}>
-    <BrowserRouter>
+  <BrowserRouter>
+    <Provider store={store}>
       <App />
-    </BrowserRouter>
-  </Provider>,
+    </Provider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
