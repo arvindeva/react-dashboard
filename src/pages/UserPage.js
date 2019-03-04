@@ -17,7 +17,9 @@ class UserPage extends React.Component {
   state = {
     user: {},
     posts: [],
+    comments: [],
     albums: [],
+    photos: [],
     showPostForm: false,
     newPost: {
       title: '',
