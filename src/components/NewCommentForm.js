@@ -1,9 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { addComment } from '../actions/comments';
-
-const StyledNewCommentForm = styled.form``;
 
 class NewCommentForm extends React.Component {
   state = {
@@ -30,7 +27,7 @@ class NewCommentForm extends React.Component {
 
   render() {
     return (
-      <StyledNewCommentForm className="ui form" onSubmit={this.onFormSubmit}>
+      <div className="ui form" onSubmit={this.onFormSubmit}>
         <div className="field">
           <label>Name: </label>
           <input
@@ -46,7 +43,7 @@ class NewCommentForm extends React.Component {
         <div className="field">
           <label>Email: </label>
           <input
-            type="text"
+            type="email"
             name="email"
             placeholder="Enter Email"
             autoComplete="off"
@@ -70,7 +67,7 @@ class NewCommentForm extends React.Component {
         <button className="ui button teal" type="submit">
           Submit
         </button>
-      </StyledNewCommentForm>
+      </div>
     );
   }
 }

@@ -1,9 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { addPost } from '../actions/posts';
-
-const StyledNewPostForm = styled.form``;
 
 class NewPostForm extends React.Component {
   state = {
@@ -28,7 +25,7 @@ class NewPostForm extends React.Component {
 
   render() {
     return (
-      <StyledNewPostForm className="ui form" onSubmit={this.onFormSubmit}>
+      <div className="ui form" onSubmit={this.onFormSubmit}>
         <div className="field">
           <label>Title: </label>
           <input
@@ -56,7 +53,7 @@ class NewPostForm extends React.Component {
         <button className="ui button teal" type="submit">
           Submit
         </button>
-      </StyledNewPostForm>
+      </div>
     );
   }
 }

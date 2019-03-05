@@ -1,19 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import UserEntry from './UserEntry';
 import { connect } from 'react-redux';
 
-const StyledUserTable = styled.div`
-  /* a {
-    cursor: pointer;
-  } */
-`;
-
 const UserTable = props => {
   console.log(props.users);
   return (
-    <StyledUserTable>
+    <div>
       {props.users.length ? (
         <table className="ui celled table">
           <thead>
@@ -34,7 +27,7 @@ const UserTable = props => {
       ) : (
         <div className="ui active inline loader"></div>
       )}
-    </StyledUserTable>
+    </div>
   );
 };
 

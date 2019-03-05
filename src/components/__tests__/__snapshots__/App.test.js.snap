@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render correctly in "debug" mode 1`] = `
+<styled.div
+  className="app"
+>
+  <Header />
+  <div
+    className="page"
+  >
+    <Switch>
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/users/:userId"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/posts/:postId"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/albums/:albumId"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/about"
+      />
+    </Switch>
+  </div>
+</styled.div>
+`;
+
+exports[`App should render correctly with no props 1`] = `
+<styled.div
+  className="app"
+>
+  <Header />
+  <div
+    className="page"
+  >
+    <Switch>
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/users/:userId"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/posts/:postId"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/albums/:albumId"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/about"
+      />
+    </Switch>
+  </div>
+</styled.div>
+`;
