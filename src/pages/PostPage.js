@@ -20,11 +20,9 @@ class PostPage extends React.Component {
     showCommentForm: false
   };
   async componentDidMount() {
-    let postId = this.props.location.state ? this.props.location.state.id : 0;
-    // Use params if user use URL directly
-    if (!postId) {
-      postId = this.props.match.params.postId;
-    }
+    let postId = this.props.location.state
+      ? this.props.location.state.id
+      : this.props.match.params.postId;
 
     this.props.fetchPost(postId);
     this.props.fetchUser(this.props.user.id);

@@ -9,13 +9,11 @@ import PhotoList from '../components/PhotoList';
 
 class AlbumPage extends React.Component {
   componentDidMount() {
-    let albumId = this.props.location.state ? this.props.location.state.id : 0;
+    let albumId = this.props.location.state
+      ? this.props.location.state.id
+      : this.props.match.params.albumId;
 
-    if (!albumId) {
-      albumId = this.props.match.params.albumId;
-    }
-
-    this.props.fetchAlbum(albumId);   
+    this.props.fetchAlbum(albumId);
     this.props.fetchPhotos(albumId);
     this.props.fetchUser(this.props.album.userId);
   }

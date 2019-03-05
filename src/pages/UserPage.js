@@ -22,13 +22,9 @@ class UserPage extends React.Component {
   };
 
   async componentDidMount() {
-    // Get userId from Link
-    let userId = this.props.location.state ? this.props.location.state.id : 0;
-
-    // Use params if user use URL directly
-    if (!userId) {
-      userId = this.props.match.params.userId;
-    }
+    let userId = this.props.location.state
+      ? this.props.location.state.id
+      : this.props.match.params.userId;
 
     this.props.fetchUser(userId);
     this.props.fetchPosts(userId);
