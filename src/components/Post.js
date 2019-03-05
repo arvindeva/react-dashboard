@@ -89,7 +89,7 @@ class Post extends React.Component {
             <Button color="black" onClick={this.onEditClose} inverted>
               Cancel
             </Button>
-            <Button color="green" onClick={this.onEditClick} inverted>
+            <Button color="teal" onClick={this.onEditClick} inverted>
               <Icon name="pencil" /> Edit
             </Button>
           </form>
@@ -113,7 +113,7 @@ class Post extends React.Component {
             <Button color="black" onClick={this.onDeleteClose} inverted>
               Cancel
             </Button>
-            <Button color="red" type="submit" inverted>
+            <Button color="red" type="submit" onClick={this.onDeleteClick} inverted>
               <Icon name="trash" /> Delete
             </Button>
           </Modal.Actions>

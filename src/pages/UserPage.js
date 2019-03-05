@@ -18,7 +18,7 @@ const StyledUserPage = styled.div`
 
 class UserPage extends React.Component {
   state = {
-    showPostForm: false,
+    showPostForm: false
   };
 
   async componentDidMount() {
@@ -73,6 +73,7 @@ class UserPage extends React.Component {
                   </h3>
                   {this.state.showPostForm ? <NewPostForm /> : <div />}
                 </div>
+                <div className="ui divider" />
                 <PostList />
               </div>
             </div>
