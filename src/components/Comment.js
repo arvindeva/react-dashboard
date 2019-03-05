@@ -14,7 +14,6 @@ class Comment extends React.Component {
 
   onDeleteClick = e => {
     e.preventDefault();
-    console.log(this.props.comment.id);
     this.props.deleteComment(this.props.comment.id);
     this.setState({ deleteModalOpen: false });
   };

@@ -4,7 +4,6 @@ import UserEntry from './UserEntry';
 import { connect } from 'react-redux';
 
 const UserTable = props => {
-  console.log(props.users);
   return (
     <div>
       {props.users.length ? (

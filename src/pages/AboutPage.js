@@ -18,7 +18,7 @@ class AboutPage extends React.Component {
     return this.state.readMe ? (
       <ReactMarkdown source={this.state.readMe} />
     ) : (
-      "Loading"
+      <div className="ui active inline loader" />
     );
   }
 }

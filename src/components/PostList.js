@@ -7,17 +7,13 @@ const PostList = props => {
   const list = props.posts;
   return (
     <div className="ui list">
-      {list ? (
-        props.posts.map(post => {
+      {list.map(post => {
           return (
             <div className="item" key={`${post.id}`}>
               <Post post={post} user={props.user} />
             </div>
           );
-        })
-      ) : (
-        <div>Loading Data</div>
-      )}
+        })}
     </div>
   );
 };
