@@ -25,7 +25,7 @@ class NewPostForm extends React.Component {
 
   render() {
     return (
-      <div className="ui form" onSubmit={this.onFormSubmit}>
+      <form className="ui form" onSubmit={this.onFormSubmit}>
         <div className="field">
           <label>Title: </label>
           <input
@@ -53,7 +53,7 @@ class NewPostForm extends React.Component {
         <button className="ui button teal" type="submit">
           Submit
         </button>
-      </div>
+      </form>
     );
   }
 }
