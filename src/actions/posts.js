@@ -1,4 +1,4 @@
-import { ADD_POST, DELETE_POST, FETCH_POSTS } from './types';
+import { ADD_POST, DELETE_POST, FETCH_POSTS, EDIT_POST } from './types';
 import axios from 'axios';
 
 const apiUrl = 'https://jsonplaceholder.typicode.com';
@@ -33,7 +33,6 @@ export const deletePost = id => dispatch => {
     .then(response => {
       console.log(response.status);
       dispatch(deletePostSuccess(id));
-      alert(`Deleted post with id: ${id}, Response status code: ${response.status}`)
     })
     .catch(error => {
       throw error;
@@ -41,11 +40,34 @@ export const deletePost = id => dispatch => {
 };
 
 export const deletePostSuccess = id => {
-  console.log('inside success: ' + id);
   return {
     type: DELETE_POST,
     payload: {
       id: id
+    }
+  };  
+};
+
+export const editPost = (id, title, body) => dispatch =>{
+  console.log(id, title, body)
+  axios
+    .put(`${apiUrl}/posts/${id}`, { title, body })
+    .then(response => {
+      console.log(response.data);
+      dispatch(editPostSuccess(response.data));
+    })
+    .catch(error => {
+      throw error;
+    });
+}
+
+export const editPostSuccess = data => {
+  return {
+    type: EDIT_POST,
+    payload: {
+      id: data.id,
+      title: data.title,
+      body: data.body
     }
   };
 };

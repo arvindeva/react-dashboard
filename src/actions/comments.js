@@ -1,4 +1,4 @@
-import { ADD_COMMENT, DELETE_COMMENT, FETCH_COMMENTS } from './types';
+import { ADD_COMMENT, DELETE_COMMENT, FETCH_COMMENTS, EDIT_COMMENT } from './types';
 import axios from 'axios';
 
 const apiUrl = 'https://jsonplaceholder.typicode.com';
@@ -30,9 +30,9 @@ export const deleteComment = id => dispatch => {
   console.log(`Trying to delete ${apiUrl}/comments/${id}`)
   axios
     .delete(`${apiUrl}/comments/${id}`)
-    .then(response => {
+    .then((response) => {
       dispatch(deleteCommentSuccess(id));
-      alert(`Deleted comment with id: ${id}, Response status code: ${response.status}`)
+      console.log(response.status);
     })
     .catch(error => {
       throw error;
@@ -44,6 +44,31 @@ export const deleteCommentSuccess = id => {
     type: DELETE_COMMENT,
     payload: {
       id: id
+    }
+  };
+};
+
+export const editComment = (id, name, email, body) => dispatch =>{
+  console.log(id, name, email, body)
+  axios
+    .put(`${apiUrl}/posts/${id}`, { name, email, body })
+    .then(response => {
+      console.log(response.data);
+      dispatch(editCommentSuccess(response.data));
+    })
+    .catch(error => {
+      throw error;
+    });
+}
+
+export const editCommentSuccess = data => {
+  return {
+    type: EDIT_COMMENT,
+    payload: {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      body: data.body
     }
   };
 };
