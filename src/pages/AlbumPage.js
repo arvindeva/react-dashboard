@@ -1,78 +1,72 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { fetchAlbum } from '../actions/album';
+import { fetchUser } from '../actions/user';
+import { fetchPhotos } from '../actions/photos';
 
 import PhotoList from '../components/PhotoList';
 
 class AlbumPage extends React.Component {
-  state = {
-    user: {},
-    album: {},
-    photos: [],
-    isLoading: true
-  };
-
-  async componentDidMount() {
+  componentDidMount() {
     let albumId = this.props.location.state ? this.props.location.state.id : 0;
 
-    // Use params if user use URL directly
     if (!albumId) {
       albumId = this.props.match.params.albumId;
     }
 
-    this.setState({ isLoading: true });
-    let albumResponse = await axios.get(
-      `https://jsonplaceholder.typicode.com/albums/${albumId}`
-    );
-    const album = albumResponse.data;
-    this.setState({ album: album });
-    let photosResponse = await axios.get(
-      `https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`
-    );
-    const photos = photosResponse.data;
-    this.setState({ photos: photos });
-
-    let userResponse = await axios.get(
-      `https://jsonplaceholder.typicode.com/users/${this.state.album.userId}`
-    );
-    let user = userResponse.data;
-    this.setState({ user: user, isLoading: false });
+    this.props.fetchAlbum(albumId);   
+    this.props.fetchPhotos(albumId);
+    this.props.fetchUser(this.props.album.userId);
   }
 
   render() {
     return (
       <div>
-        <h1>
-          {!this.state.isLoading ? (
-            this.state.album.title
-          ) : (
-            <div className="ui placeholder">
-              <div className="line" />
-            </div>
-          )}
-        </h1>
+        <h1>{this.props.album.title}</h1>
         <p>
           Album By:{' '}
           <Link
             to={{
-              pathname: `/users/${this.state.user.id}`,
-              state: { id: this.state.user.id }
+              pathname: `/users/${this.props.user.id}`,
+              state: { id: this.props.user.id }
             }}
           >
-            {this.state.user.name}
+            {this.props.user.name}
           </Link>
         </p>
         <div className="ui divider" />
         <div>
-          {!this.state.isLoading ? (
-            <PhotoList photos={this.state.photos} user={this.state.user} />
-          ) : (
-            <div className="ui active inline loader" />
-          )}
+          <PhotoList />
         </div>
       </div>
     );
   }
 }
 
-export default AlbumPage;
+const mapStateToProps = state => {
+  return {
+    album: state.album,
+    user: state.user,
+    photos: state.photos
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchAlbum: albumId => {
+      dispatch(fetchAlbum(albumId));
+    },
+    fetchUser: userId => {
+      dispatch(fetchUser(userId));
+    },
+    fetchPhotos: albumId => {
+      dispatch(fetchPhotos(albumId));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AlbumPage);

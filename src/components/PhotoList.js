@@ -1,17 +1,21 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
 import Photo from './Photo';
 
 const PhotoList = props => {
-  const list = props.photos;
-
   return (
     <div className="ui items">
-      {list.map(photo => {
-        return <Photo photo={photo} key={photo.id} user={props.user}/>;
+      {props.photos.map(photo => {
+        return <Photo photo={photo} key={photo.id} user={props.user} />;
       })}
     </div>
   );
 };
 
-export default PhotoList;
+const mapStateToProps = state => {
+  return {
+    photos: state.photos
+  };
+};
+
+export default connect(mapStateToProps)(PhotoList);

@@ -8,12 +8,8 @@ import UserTable from '../components/UserTable';
 const StyledUsersPage = styled.div``;
 
 class UsersPage extends React.Component {
-  state = {
-    users: []
-  };
-  async componentDidMount() {
+  componentDidMount() {
     this.props.fetchUsers();
-
   }
 
   render() {
@@ -31,12 +27,6 @@ class UsersPage extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    users: state.users
-  };
-};
-
 const mapDispatchToProps = dispatch => {
   return {
     fetchUsers: () => {
@@ -46,6 +36,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(UsersPage);
