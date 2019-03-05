@@ -12,6 +12,11 @@ class Comment extends React.Component {
     editedBody: ''
   };
 
+  onDeleteOpen = () => this.setState({ deleteModalOpen: true });
+  onDeleteClose = () => this.setState({ deleteModalOpen: false });
+  onEditOpen = () => this.setState({ editModalOpen: true });
+  onEditClose = () => this.setState({ editModalOpen: false });
+
   onDeleteClick = e => {
     e.preventDefault();
     this.props.deleteComment(this.props.comment.id);
@@ -29,12 +34,6 @@ class Comment extends React.Component {
     this.setState({ editModalOpen: false });
   };
 
-  handleDeleteOpen = () => this.setState({ deleteModalOpen: true });
-  handleDeleteClose = () => this.setState({ deleteModalOpen: false });
-
-  handleEditOpen = () => this.setState({ editModalOpen: true });
-  handleEditClose = () => this.setState({ editModalOpen: false });
-
   onInputChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -49,12 +48,12 @@ class Comment extends React.Component {
         <p>{this.props.comment.body}</p>
         <Modal
           trigger={
-            <Button color="teal" onClick={this.handleEditOpen}>
+            <Button color="teal" onClick={this.onEditOpen}>
               Edit
             </Button>
           }
           open={this.state.editModalOpen}
-          onClose={this.handleEditClose}
+          onClose={this.onEditClose}
           basic
           size="small"
         >
@@ -93,7 +92,7 @@ class Comment extends React.Component {
                 required
               />
             </div>
-            <Button color="black" onClick={this.handleEditClose} inverted>
+            <Button color="black" onClick={this.onEditClose} inverted>
               Cancel
             </Button>
             <Button type="submit" color="green" inverted>
@@ -103,12 +102,12 @@ class Comment extends React.Component {
         </Modal>
         <Modal
           trigger={
-            <Button color="red" onClick={this.handleDeleteOpen}>
+            <Button color="red" onClick={this.onDeleteOpen}>
               Delete
             </Button>
           }
           open={this.state.deleteModalOpen}
-          onClose={this.handleDeleteClose}
+          onClose={this.onDeleteClose}
           basic
           size="small"
         >
@@ -117,7 +116,7 @@ class Comment extends React.Component {
             <h3>Are you sure you want to delete this comment?</h3>
           </Modal.Content>
           <Modal.Actions>
-            <Button color="black" onClick={this.handleDeleteClose} inverted>
+            <Button color="black" onClick={this.onDeleteClose} inverted>
               Cancel
             </Button>
             <Button color="red" onClick={this.onDeleteClick} inverted>

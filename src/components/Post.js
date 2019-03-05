@@ -14,7 +14,6 @@ class Post extends React.Component {
 
   onEditOpen = () => this.setState({ editModalOpen: true });
   onEditClose = () => this.setState({ editModalOpen: false });
-
   onDeleteOpen = () => this.setState({ deleteModalOpen: true });
   onDeleteClose = () => this.setState({ deleteModalOpen: false });
 
