@@ -1,9 +1,14 @@
-import { ADD_COMMENT, DELETE_COMMENT, FETCH_COMMENTS, EDIT_COMMENT } from './types';
+import {
+  ADD_COMMENT,
+  DELETE_COMMENT,
+  FETCH_COMMENTS,
+  EDIT_COMMENT
+} from './types';
 import axios from 'axios';
 
 const apiUrl = 'https://jsonplaceholder.typicode.com';
 
-export const addComment = ( name, email, body ) => dispatch => {
+export const addComment = (name, email, body) => dispatch => {
   axios
     .post(`${apiUrl}/comments`, { name, email, body })
     .then(response => {
@@ -27,12 +32,10 @@ export const addCommentSuccess = data => {
 };
 
 export const deleteComment = id => dispatch => {
-  console.log(`Trying to delete ${apiUrl}/comments/${id}`)
   axios
     .delete(`${apiUrl}/comments/${id}`)
-    .then((response) => {
+    .then(response => {
       dispatch(deleteCommentSuccess(id));
-      console.log(response.status);
     })
     .catch(error => {
       throw error;
@@ -48,18 +51,16 @@ export const deleteCommentSuccess = id => {
   };
 };
 
-export const editComment = (id, name, email, body) => dispatch =>{
-  console.log(id, name, email, body)
+export const editComment = (id, name, email, body) => dispatch => {
   axios
     .put(`${apiUrl}/posts/${id}`, { name, email, body })
     .then(response => {
-      console.log(response.data);
       dispatch(editCommentSuccess(response.data));
     })
     .catch(error => {
       throw error;
     });
-}
+};
 
 export const editCommentSuccess = data => {
   return {
@@ -74,7 +75,6 @@ export const editCommentSuccess = data => {
 };
 
 export const fetchComments = postId => dispatch => {
-  console.log(postId);
   axios
     .get(`${apiUrl}/comments?postId=${postId}`)
     .then(response => {

@@ -24,7 +24,7 @@ const UserTable = props => {
           </tbody>
         </table>
       ) : (
-        <div className="ui active inline loader"></div>
+        <div className="ui active inline loader" />
       )}
     </div>
   );

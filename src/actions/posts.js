@@ -7,7 +7,6 @@ export const addPost = (title, body) => dispatch => {
   axios
     .post(`${apiUrl}/posts`, { title, body })
     .then(response => {
-      console.log(response.data);
       dispatch(addPostSuccess(response.data));
     })
     .catch(error => {
@@ -27,11 +26,9 @@ export const addPostSuccess = data => {
 };
 
 export const deletePost = id => dispatch => {
-  console.log(`Trying to delete ${apiUrl}/posts/${id}`)
   axios
     .delete(`${apiUrl}/posts/${id}`)
     .then(response => {
-      console.log(response.status);
       dispatch(deletePostSuccess(id));
     })
     .catch(error => {
@@ -45,21 +42,19 @@ export const deletePostSuccess = id => {
     payload: {
       id: id
     }
-  };  
+  };
 };
 
-export const editPost = (id, title, body) => dispatch =>{
-  console.log(id, title, body)
+export const editPost = (id, title, body) => dispatch => {
   axios
     .put(`${apiUrl}/posts/${id}`, { title, body })
     .then(response => {
-      console.log(response.data);
       dispatch(editPostSuccess(response.data));
     })
     .catch(error => {
       throw error;
     });
-}
+};
 
 export const editPostSuccess = data => {
   return {
@@ -73,7 +68,6 @@ export const editPostSuccess = data => {
 };
 
 export const fetchPosts = userId => dispatch => {
-  console.log(userId);
   axios
     .get(`${apiUrl}/posts?userId=${userId}`)
     .then(response => {

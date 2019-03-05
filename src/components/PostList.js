@@ -8,12 +8,12 @@ const PostList = props => {
   return (
     <div className="ui list">
       {list.map(post => {
-          return (
-            <div className="item" key={`${post.id}`}>
-              <Post post={post} user={props.user} />
-            </div>
-          );
-        })}
+        return (
+          <div className="item" key={`${post.id}`}>
+            <Post post={post} user={props.user} />
+          </div>
+        );
+      })}
     </div>
   );
 };
@@ -21,7 +21,7 @@ const PostList = props => {
 const mapStateToProps = state => {
   return {
     posts: state.posts
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(PostList);

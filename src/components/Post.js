@@ -113,7 +113,12 @@ class Post extends React.Component {
             <Button color="black" onClick={this.onDeleteClose} inverted>
               Cancel
             </Button>
-            <Button color="red" type="submit" onClick={this.onDeleteClick} inverted>
+            <Button
+              color="red"
+              type="submit"
+              onClick={this.onDeleteClick}
+              inverted
+            >
               <Icon name="trash" /> Delete
             </Button>
           </Modal.Actions>

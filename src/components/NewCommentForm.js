@@ -22,7 +22,7 @@ class NewCommentForm extends React.Component {
       name: '',
       email: '',
       body: ''
-    }); 
+    });
   };
 
   render() {

@@ -11,12 +11,12 @@ export const fetchUsers = () => dispatch => {
     })
     .catch(error => {
       throw error;
-    })
-}
+    });
+};
 
 export const fetchUsersSuccess = users => {
   return {
     type: FETCH_USERS,
     users: users
-  }
-}
+  };
+};
