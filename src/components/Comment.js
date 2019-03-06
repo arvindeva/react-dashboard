@@ -125,7 +125,6 @@ class Comment extends React.Component {
           </Modal.Actions>
         </Modal>
         <div className="ui divider" />
-        <div className="ui divider" />
       </div>
     );
   }

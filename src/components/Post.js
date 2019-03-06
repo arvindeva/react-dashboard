@@ -20,6 +20,7 @@ class Post extends React.Component {
   onDeleteClick = e => {
     e.preventDefault();
     this.props.deletePost(this.props.post.id);
+    this.setState({ deleteModalOpen: false });
   };
 
   onEditClick = e => {
