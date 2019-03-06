@@ -1,7 +1,7 @@
 # Social Media Dashboard
 
 ## Deployed Site
-now: [https://react-dashboard-9dvbfq8t7.now.sh/](https://react-dashboard-9dvbfq8t7.now.sh/)
+now: [https://react-dashboard-6xeyowhc8.now.sh/](https://react-dashboard-6xeyowhc8.now.sh/)
 
 Heroku: [https://evening-savannah-47143.herokuapp.com/](https://evening-savannah-47143.herokuapp.com/)
 
