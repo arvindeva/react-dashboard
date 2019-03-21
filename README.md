@@ -3,10 +3,6 @@
 ## Deployed Site
 now: [https://react-dashboard-6xeyowhc8.now.sh/](https://react-dashboard-6xeyowhc8.now.sh/)
 
-Heroku: [https://evening-savannah-47143.herokuapp.com/](https://evening-savannah-47143.herokuapp.com/)
-
-I deployed on now and Heroku. Please note Heroku might be asleep, so opening the site for the first time might take some time.
-
 ## How to run locally
 
 Make sure you have node installed. You can download it [here](https://nodejs.org/en/download/)

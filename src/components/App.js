@@ -17,23 +17,21 @@ const StyledApp = styled.div`
     z-index: 0;
   }
 `;
-class App extends React.Component {
-  render() {
-    return (
-      <StyledApp className="app">
-        <Header />
-        <div className="page">
-          <Switch>
-            <Route exact path="/" component={UsersPage} />
-            <Route exact path="/users/:userId" component={UserPage} />
-            <Route exact path="/posts/:postId" component={PostPage} />
-            <Route exact path="/albums/:albumId" component={AlbumPage} />
-            <Route exact path="/about" component={AboutPage} />
-          </Switch>
-        </div>
-      </StyledApp>
-    );
-  }
-}
+const App = () => {
+  return (
+    <StyledApp className="app">
+      <Header />
+      <div className="page">
+        <Switch>
+          <Route exact path="/" component={UsersPage} />
+          <Route exact path="/users/:userId" component={UserPage} />
+          <Route exact path="/posts/:postId" component={PostPage} />
+          <Route exact path="/albums/:albumId" component={AlbumPage} />
+          <Route exact path="/about" component={AboutPage} />
+        </Switch>
+      </div>
+    </StyledApp>
+  );
+};
 
 export default App;

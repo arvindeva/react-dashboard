@@ -33,30 +33,31 @@ const StyledHeader = styled.div`
   }
 `;
 
-class Header extends React.Component {
-  render() {
-    return (
-      <StyledHeader>
-        <div className="bar">
-          <div className="logo">
-            <Link to="/">
-              <h1>Dashboard</h1>
-            </Link>
+const Header = () => {
+  return (
+    <StyledHeader>
+      <div className="bar">
+        <div className="logo">
+          <Link to="/">
+            <h1>Dashboard</h1>
+          </Link>
+        </div>
+        <div className="nav-items">
+          <div className="item">
+            <Link to="/about">About</Link>
           </div>
-          <div className="nav-items">
-            <div className="item">
-              <Link to="/about">About</Link>
-            </div>
-            <div className="item">
-              <a href="https://github.com/arvindeva/react-dashboard" target="blank">
-                <i className="github icon large" /> 
-              </a>
-            </div>
+          <div className="item">
+            <a
+              href="https://github.com/arvindeva/react-dashboard"
+              target="blank"
+            >
+              <i className="github icon large" />
+            </a>
           </div>
         </div>
-      </StyledHeader>
-    );
-  }
-}
+      </div>
+    </StyledHeader>
+  );
+};
 
 export default Header;
