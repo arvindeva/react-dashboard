@@ -2,7 +2,8 @@ import {
   ADD_POST,
   DELETE_POST,
   FETCH_POSTS,
-  EDIT_POST
+  EDIT_POST,
+  CLEAR_POSTS
 } from '../actions/types';
 
 export default function postsReducer(state = [], action) {
@@ -20,6 +21,8 @@ export default function postsReducer(state = [], action) {
       return state.filter(post => post.id !== action.payload.id);
     case FETCH_POSTS:
       return action.posts;
+    case CLEAR_POSTS:
+      return [];
     default:
       return state;
   }

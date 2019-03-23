@@ -10,7 +10,9 @@ export default function commentsReducer(state = [], action) {
     case ADD_COMMENT:
       return [action.payload, ...state];
     case EDIT_COMMENT:
-      const index = state.findIndex(comment => comment.id === action.payload.id);
+      const index = state.findIndex(
+        comment => comment.id === action.payload.id
+      );
       return [
         ...state.slice(0, index),
         action.payload,

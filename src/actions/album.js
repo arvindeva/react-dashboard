@@ -20,4 +20,3 @@ export const fetchAlbumSuccess = album => {
     album: album
   }
 }
-

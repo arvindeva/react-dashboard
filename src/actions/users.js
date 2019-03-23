@@ -1,4 +1,4 @@
-import { FETCH_USERS } from './types';
+import { FETCH_USERS, CLEAR_USERS } from './types';
 import axios from 'axios';
 
 const apiUrl = 'https://jsonplaceholder.typicode.com';
@@ -20,3 +20,9 @@ export const fetchUsersSuccess = users => {
     users: users
   };
 };
+
+export const clearUsers = () => {
+  return {
+    type: CLEAR_USERS
+  }
+}

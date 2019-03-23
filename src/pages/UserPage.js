@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions/posts';
-import { fetchUser } from '../actions/user';
-import { fetchAlbums } from '../actions/albums';
+import { fetchPosts, clearPosts } from '../actions/posts';
+import { fetchUser, clearUser } from '../actions/user';
+import { fetchAlbums, clearAlbums } from '../actions/albums';
 import styled from 'styled-components';
 
 import UserDetail from '../components/UserDetail';
@@ -22,6 +22,11 @@ class UserPage extends React.Component {
   };
 
   async componentDidMount() {
+    // clear state appropriately so the page does not render previous state.
+    this.props.clearUser();
+    this.props.clearPosts();
+    this.props.clearAlbums();
+
     let userId = this.props.location.state
       ? this.props.location.state.id
       : this.props.match.params.userId;
@@ -38,12 +43,13 @@ class UserPage extends React.Component {
   };
 
   render() {
+    const { user } = this.props;
     return (
       <StyledUserPage>
         <div>
           <h1>
-            {this.props.user.name ? (
-              this.props.user.name
+            {user.name ? (
+              user.name
             ) : (
               <div className="ui placeholder">
                 <div className="line" />
@@ -106,6 +112,15 @@ const mapDispatchToProps = dispatch => {
     },
     fetchAlbums: userId => {
       dispatch(fetchAlbums(userId));
+    },
+    clearUser: () => {
+      dispatch(clearUser());
+    },
+    clearPosts: () => {
+      dispatch(clearPosts());
+    },
+    clearAlbums: () => {
+      dispatch(clearAlbums());
     }
   };
 };
