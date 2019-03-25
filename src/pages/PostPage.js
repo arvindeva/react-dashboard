@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchPost } from '../actions/post';
-import { fetchUser } from '../actions/user';
-import { fetchComments } from '../actions/comments';
+import { fetchPost, clearPost } from '../actions/post';
+import { fetchUser, clearUser } from '../actions/user';
+import { fetchComments, clearComments } from '../actions/comments';
 import styled from 'styled-components';
 
 import CommentList from '../components/CommentList';
@@ -20,13 +20,18 @@ class PostPage extends React.Component {
     showCommentForm: false
   };
   async componentDidMount() {
+    // clear store state appropriately so the page does not render previous state.
+    this.props.clearPost();
+    this.props.clearComments();
+    this.props.clearUser();
+
     let postId = this.props.location.state
       ? this.props.location.state.id
       : this.props.match.params.postId;
 
     this.props.fetchPost(postId);
-    this.props.fetchUser(this.props.user.id);
     this.props.fetchComments(postId);
+    this.props.fetchUser(this.props.user.id);
   }
 
   toggleNewComment = () => {
@@ -92,6 +97,15 @@ const mapDispatchToProps = dispatch => {
     },
     fetchComments: postId => {
       dispatch(fetchComments(postId));
+    },
+    clearPost: () => {
+      dispatch(clearPost());
+    },
+    clearComments: () => {
+      dispatch(clearComments());
+    },
+    clearUser: () => {
+      dispatch(clearUser());
     }
   };
 };

@@ -9,6 +9,7 @@ import UserDetail from '../components/UserDetail';
 import PostList from '../components/PostList';
 import AlbumList from '../components/AlbumList';
 import NewPostForm from '../components/NewPostForm';
+import ListPlaceholder from '../components/placeholders/ListPlaceholder';
 
 const StyledUserPage = styled.div`
   .add-post-icon {
@@ -22,7 +23,7 @@ class UserPage extends React.Component {
   };
 
   async componentDidMount() {
-    // clear state appropriately so the page does not render previous state.
+    // clear store state appropriately so the page does not render previous state.
     this.props.clearUser();
     this.props.clearPosts();
     this.props.clearAlbums();
@@ -43,7 +44,7 @@ class UserPage extends React.Component {
   };
 
   render() {
-    const { user } = this.props;
+    const { user, posts, albums } = this.props;
     return (
       <StyledUserPage>
         <div>
@@ -73,10 +74,15 @@ class UserPage extends React.Component {
                       onClick={this.toggleNewPost}
                     />
                   </h3>
-                  {this.state.showPostForm ? <NewPostForm /> : <div />}
+                  {this.state.showPostForm && <NewPostForm />}
                 </div>
                 <div className="ui divider" />
-                <PostList />
+
+                {posts.length !== 0 ? (
+                  <PostList posts={posts} />
+                ) : (
+                  <ListPlaceholder />
+                )}
               </div>
             </div>
           </div>
@@ -84,7 +90,11 @@ class UserPage extends React.Component {
             <div className="ui fluid card">
               <div className="content">
                 <h1>Albums</h1>
-                <AlbumList />
+                {albums.length !== 0 ? (
+                  <AlbumList albums={albums} />
+                ) : (
+                  <ListPlaceholder />
+                )}
               </div>
             </div>
           </div>

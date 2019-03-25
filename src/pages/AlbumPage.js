@@ -1,14 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchAlbum } from '../actions/album';
-import { fetchUser } from '../actions/user';
-import { fetchPhotos } from '../actions/photos';
+import { fetchAlbum, clearAlbum } from '../actions/album';
+import { fetchUser, clearUser } from '../actions/user';
+import { fetchPhotos, clearPhotos } from '../actions/photos';
 
 import PhotoList from '../components/PhotoList';
 
 class AlbumPage extends React.Component {
   componentDidMount() {
+    // clear store state appropriately so the page does not render previous state.
+    this.props.clearAlbum();
+    this.props.clearPhotos();
+    this.props.clearUser();
+
     let albumId = this.props.location.state
       ? this.props.location.state.id
       : this.props.match.params.albumId;
@@ -60,6 +65,15 @@ const mapDispatchToProps = dispatch => {
     },
     fetchPhotos: albumId => {
       dispatch(fetchPhotos(albumId));
+    },
+    clearAlbum: () => {
+      dispatch(clearAlbum());
+    },
+    clearPhotos: () => {
+      dispatch(clearPhotos());
+    },
+    clearUser: () => {
+      dispatch(clearUser());
     }
   };
 };

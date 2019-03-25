@@ -1,4 +1,4 @@
-import { FETCH_PHOTOS } from './types';
+import { FETCH_PHOTOS, CLEAR_PHOTOS } from './types';
 import axios from 'axios';
 
 const apiUrl = 'https://jsonplaceholder.typicode.com';
@@ -18,5 +18,11 @@ export const fetchPhotosSuccess = photos => {
   return {
     type: FETCH_PHOTOS,
     photos: photos
+  }
+}
+
+export const clearPhotos = () => {
+  return {
+    type: CLEAR_PHOTOS
   }
 }

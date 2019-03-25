@@ -2,7 +2,8 @@ import {
   ADD_COMMENT,
   DELETE_COMMENT,
   FETCH_COMMENTS,
-  EDIT_COMMENT
+  EDIT_COMMENT,
+  CLEAR_COMMENTS
 } from './types';
 import axios from 'axios';
 
@@ -91,3 +92,9 @@ export const fetchCommentsSuccess = comments => {
     comments: comments
   };
 };
+
+export const clearComments = () => {
+  return {
+    type: CLEAR_COMMENTS
+  }
+}

@@ -1,4 +1,4 @@
-import { FETCH_POST } from './types';
+import { FETCH_POST, CLEAR_POST } from './types';
 import axios from 'axios';
 
 const apiUrl = 'https://jsonplaceholder.typicode.com';
@@ -21,3 +21,8 @@ export const fetchPostSuccess = post => {
   }
 }
 
+export const clearPost = () => {
+  return {
+    type: CLEAR_POST
+  }
+}

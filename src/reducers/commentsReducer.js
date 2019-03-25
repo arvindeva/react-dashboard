@@ -2,7 +2,8 @@ import {
   ADD_COMMENT,
   DELETE_COMMENT,
   FETCH_COMMENTS,
-  EDIT_COMMENT
+  EDIT_COMMENT,
+  CLEAR_COMMENTS
 } from '../actions/types';
 
 export default function commentsReducer(state = [], action) {
@@ -22,6 +23,8 @@ export default function commentsReducer(state = [], action) {
       return state.filter(comment => comment.id !== action.payload.id);
     case FETCH_COMMENTS:
       return action.comments;
+    case CLEAR_COMMENTS:
+      return [];
     default:
       return state;
   }
