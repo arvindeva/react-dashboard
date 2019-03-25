@@ -6,6 +6,7 @@ import { fetchUser, clearUser } from '../actions/user';
 import { fetchPhotos, clearPhotos } from '../actions/photos';
 
 import PhotoList from '../components/PhotoList';
+import PhotosPlaceholder from '../components/placeholders/PhotosPlaceholder';
 
 class AlbumPage extends React.Component {
   componentDidMount() {
@@ -26,7 +27,14 @@ class AlbumPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.props.album.title}</h1>
+        {this.props.album.title ? (
+          <h1>{this.props.album.title}</h1>
+        ) : (
+          <div className="ui placeholder">
+            <div className="line" />
+          </div>
+        )}
+
         <p>
           Album By:{' '}
           <Link
@@ -40,7 +48,11 @@ class AlbumPage extends React.Component {
         </p>
         <div className="ui divider" />
         <div>
-          <PhotoList />
+          {this.props.photos.length !== 0 ? (
+            <PhotoList photos={this.props.photos} />
+          ) : (
+            <PhotosPlaceholder />
+          )}
         </div>
       </div>
     );

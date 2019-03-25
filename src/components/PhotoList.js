@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Photo from './Photo';
 
 const PhotoList = props => {
@@ -12,10 +11,4 @@ const PhotoList = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    photos: state.photos
-  };
-};
-
-export default connect(mapStateToProps)(PhotoList);
+export default PhotoList;

@@ -8,6 +8,7 @@ import styled from 'styled-components';
 
 import CommentList from '../components/CommentList';
 import NewCommentForm from '../components/NewCommentForm';
+import ListPlaceholder from '../components/placeholders/ListPlaceholder';
 
 const StyledPostPage = styled.div`
   .add-comment-icon {
@@ -43,7 +44,13 @@ class PostPage extends React.Component {
   render() {
     return (
       <StyledPostPage>
-        <h1>{this.props.post.title}</h1>
+        {this.props.post.title ? (
+          <h1>{this.props.post.title}</h1>
+        ) : (
+          <div className="ui placeholder">
+            <div className="line" />
+          </div>
+        )}
         <p>
           Posted by:{' '}
           <Link
@@ -55,7 +62,14 @@ class PostPage extends React.Component {
             {this.props.user.name}
           </Link>
         </p>
-        <p>{this.props.post.body}</p>
+        {this.props.post.body ? (
+          <p>{this.props.post.body}</p>
+        ) : (
+          <div className="ui placeholder">
+            <div className="line" />
+          </div>
+        )}
+
         <div className="ui divider" />
         <h1>Comments</h1>
         <div className="add-comment">
@@ -69,11 +83,15 @@ class PostPage extends React.Component {
           {this.state.showCommentForm ? <NewCommentForm /> : <div />}
         </div>
         <div className="ui divider" />
-        <CommentList
-          comment={this.props.comment}
-          comments={this.props.comments}
-          type="comments"
-        />
+        {this.props.comments.length !== 0 ? (
+          <CommentList
+            comment={this.props.comment}
+            comments={this.props.comments}
+            type="comments"
+          />
+        ) : (
+          <ListPlaceholder />
+        )}
       </StyledPostPage>
     );
   }
