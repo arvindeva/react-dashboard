@@ -1,7 +1,7 @@
 # Social Media Dashboard
 
 ## Deployed Site
-now: [https://react-dashboard-6xeyowhc8.now.sh/](https://react-dashboard-6xeyowhc8.now.sh/)
+now: [https://react-dashboard-2naxkzfkh.now.sh/](https://react-dashboard-2naxkzfkh.now.sh/)
 
 ## How to run locally
 
